@@ -21,7 +21,8 @@ const EasyMasonryComponent = (props) => (
 )
 
 const MasonryCard = ({data: {src}, data: {id}, data: {alt}}) => {
-  console.log(src);
+  let isCrisp = src.slice(-4) === '.gif' ? 'crisp-edges' : 'auto';
+  if (src.includes('7') || src.includes('12') || src.includes('14')) isCrisp = 'auto';
   return (
     <div css={{
       display: 'flex',
@@ -39,6 +40,7 @@ const MasonryCard = ({data: {src}, data: {id}, data: {alt}}) => {
         key={`pa-${id}`}
         alt={alt}
         css={{
+          imageRendering: isCrisp,
           width: '100%',
           display: 'block',
         }}
@@ -50,6 +52,7 @@ const MasonryCard = ({data: {src}, data: {id}, data: {alt}}) => {
 function App() {
   return (
     <div className="App" css={{
+      wordWrap: 'break-word',
       boxSizing: 'border-box',
       padding: 50,
       background: `url(${bg}) repeat`,
@@ -67,8 +70,9 @@ function App() {
           Nina's Art Showcase
         </h1>
         <h4>
-          Digital fist, pixel below.
+          Digital first, pixel below.
           <div css={{
+            textAlign: 'center',
             paddingTop: 10,
             fontSize: 30,
             color: 'white',
